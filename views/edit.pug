@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    div.form-panel
+        div.header  Edit Restaurant
+            form(action=`/edit/${restaurant.id}` method='post')
+                div.form-input
+                    label(for='name') Name:
+                    input(type='text' id='name' name='name' value=restaurant.name)
+                div.form-input
+                    label(for='category') Category
+                    select(id='category' name='category=' autocomplete='off')
+                        each category in categories
+                            option(value=category selected = (category ===restaurant.category)) #{category}
