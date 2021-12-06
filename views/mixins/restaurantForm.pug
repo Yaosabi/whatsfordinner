@@ -1,0 +1,10 @@
+mixin restaurantForm(restaurant, mode, title)
+
+    div.form-panel
+        div.header= title
+            form(action=actionURL method='post')
+                div.button-row
+                    a.button.cancel(href='/') Cancel
+                    if(mode==='edit')
+                        a.button.delete(href=`/delete/${restaurant.id}`) Delete
+                    button.button.save(type='submit') Submit

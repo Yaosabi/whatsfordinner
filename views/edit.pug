@@ -1,6 +1,8 @@
 extends layout
 
 block content
+    include mixins/restaurantForm
+    +restaurantForm(restaurant, `/edit/${restaurant.id}`, 'edit', 'Edit Restaurant')
     div.form-panel
         div.header  Edit Restaurant
             form(action=`/edit/${restaurant.id}` method='post')
