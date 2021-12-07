@@ -1,8 +1,28 @@
 const{Restaurant} = require('../models');
-const categories = ['Italian', 'Fast Food'];
+const categories = ['Italian', 'Fast Food', 'European', 'American', 'Chinese', 'Japanese'];
+
 module.exports.viewAll = async function(req, res) {
-    const restaurants = await Restaurant.findAll();
-    res.render('index', {restaurants});
+    let searchCategories = ['All'];
+    for(let i = 0; i<categories.length; i++){
+        searchCategories.push(categories[i]);
+    }
+    let restaurants;
+    let searchCategory = req.query.category || 'All';
+    let searchRandom = req.query.random || false; //changed
+    if(searchCategory === 'All'){
+        restaurants = await Restaurant.findAll();
+    } else {
+        restaurants = await Restaurant.findAll({
+            where: {
+                category: searchCategory
+            }
+        });
+    }
+    if(restaurants.length > 0){
+        let randomIndex = getRandomInt(restaurants.length);
+        restaurants = [restaurants[randomIndex]];
+    }
+    res.render('index', {restaurants, categories:searchCategories, searchCategory});
 }
 
 
@@ -63,4 +83,8 @@ module.exports.addRestaurant = async function(req, res){
             description: req.body.description
         });
     res.redirect('/')
+}
+
+function getRandomInt(max){
+    return Math.floor(Math.random() * max);
 }
