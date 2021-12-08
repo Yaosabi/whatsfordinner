@@ -1,40 +1,40 @@
-const{Restaurant} = require('../models');
-const categories = ['Italian', 'Fast Food', 'European', 'American', 'Chinese', 'Japanese'];
+const{Pokemon} = require('../models');
+const categories = ['Lightning'];
 
 module.exports.viewAll = async function(req, res) {
     let searchCategories = ['All'];
     for(let i = 0; i<categories.length; i++){
         searchCategories.push(categories[i]);
     }
-    let restaurants;
+    let Pokemons;
     let searchCategory = req.query.category || 'All';
     let searchRandom = req.query.random || false; //changed
     if(searchCategory === 'All'){
-        restaurants = await Restaurant.findAll();
+        restaurants = await Pokemon.findAll();
     } else {
-        restaurants = await Restaurant.findAll({
+        restaurants = await Pokemon.findAll({
             where: {
                 category: searchCategory
             }
         });
     }
-    if(restaurants.length > 0){
-        let randomIndex = getRandomInt(restaurants.length);
-        restaurants = [restaurants[randomIndex]];
+    if(Pokemons.length > 0){
+        let randomIndex = getRandomInt(Pokemons.length);
+        Pokemons = [Pokemons[randomIndex]];
     }
-    res.render('index', {restaurants, categories:searchCategories, searchCategory});
+    res.render('index', {Pokemons, categories:searchCategories, searchCategory});
 }
 
 
 module.exports.renderEditForm = async function(req, res){
-    const restaurant = await Restaurant.findByPk(
+    const Pokemon = await Pokemon.findByPk(
         req.params.id
     );
-    res.render('edit', {restaurant, categories});
+    res.render('edit', {Pokemon, categories});
 }
 
-module.exports.updateRestaurant = async function(req,res){
-    await Restaurant.update(
+module.exports.updatePokemon = async function(req,res){
+    await Pokemon.update(
         {
             name: req.body.name,
             category: req.body.category,
