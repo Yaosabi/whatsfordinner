@@ -1,0 +1,16 @@
+mixin pokemonCard(pokemon)
+
+            div.card
+                div.card-header
+                    div.backdrop
+                    div.card-title=pokemon.name
+                    img.card-header-image(src=pokemon.image)
+                div.card-body
+                    div.edit
+                        a(href=`/edit/${pokemon.id}`) Edit
+                    div.card-details
+                        div.category= pokemon.category
+                        div.rating
+                            -for (let i = 0; i < pokemon.rating; i++)
+                            span &#X2b50;
+                    div.description=pokemon.description
