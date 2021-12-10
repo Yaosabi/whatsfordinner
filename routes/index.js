@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-const pcardController = require('../controllers/pcardController')
+const restaurantController = require('../controllers/restaurantController')
 
 /* GET home page. */
 
-router.get('/', pcardController.viewAll);
-router.get('/edit/:id', pcardController.updatePokemon);
-router.get('/delete/:id', pcardController.deletePokemon);
-router.get('/add', pcardController.renderAddForm);
-router.post('/add', pcardController.addPokemon);
+router.get('/', restaurantController.viewAll);
+router.get('/edit/:id', restaurantController.updateRestaurant);
+router.get('/delete/:id', restaurantController.deleteRestaurant);
+router.get('/add', restaurantController.renderAddForm);
+router.post('/add', restaurantController.addRestaurant);
 module.exports = router;
