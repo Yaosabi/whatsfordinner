@@ -18,7 +18,7 @@ module.exports.viewAll = async function(req, res) {
             }
         });
     }
-    if(restaurants.length > 0){
+    if(restaurants.length > 0 && searchRandom){
         let randomIndex = getRandomInt(restaurants.length);
         restaurants = [restaurants[randomIndex]];
     }

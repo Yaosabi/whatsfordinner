@@ -7,8 +7,8 @@ block content
       div.form-input
         label(for= 'category') Category
         select(id='category' name='category' autocomplete='off')
-        each category in categories
-          option(value=category selected = (category === searchCategory)) #{category}
+          each category in categories
+            option(value=category selected = (category === searchCategory)) #{category}
         div.form-input
           label(for='random') Random
           input(type='checkbox' name='random' id='random' checked=searchRandom)

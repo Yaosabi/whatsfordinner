@@ -97,6 +97,17 @@ body {
   line-height: 1.25rem;
 }
 
+.button-save {
+  background: #155E75;
+  color: white;
+  border: 1px solid #164R63;
+}
+
+.add-button-row {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .main-header{
   background: #242323;
   width: 100%;
